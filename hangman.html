@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<head>
+    <link rel = 'stylesheet' href = 'hangman.css'
+</head>
+
+<body>
+
+
+    <h1>WoW Hangman</h1>
+
+    <canvas id = 'hangManCanvas'  height = "375"></canvas>
+
+
+    <p id = "hangManWord" class = 'word' ></p>
+    
+
+ <div id = 'keyboard'>
+     <div id="firstRow">
+        <button id='q' class = 'alphabet'>Q</button>
+        <button id='e' class = 'alphabet'>E</button>
+        <button id='r' class = 'alphabet'>R</button>
+        <button id='t' class = 'alphabet'>T</button>
+        <button id='y' class = 'alphabet'>Y</button>
+        <button id='u' class = 'alphabet'>U</button>
+        <button id='i' class = 'alphabet'>I</button>
+        <button id='o' class = 'alphabet'>O</button>
+        <button id='p' class = 'alphabet'>P</button>
+    </div>
+
+    <div id = "secondRow">
+        <button id = 'a' class = 'alphabet'>A</button>
+        <button id = 's' class = 'alphabet'>S</button>
+        <button id = 'd' class = 'alphabet'>D</button>
+        <button id = 'f' class = 'alphabet'>F</button>
+        <button id = 'g' class = 'alphabet'>G</button>
+        <button id = 'h' class = 'alphabet'>H</button>
+        <button id = 'j' class = 'alphabet'>J</button>
+        <button id = 'k' class = 'alphabet'>K</button>
+        <button id = 'l' class = 'alphabet'>L</button>
+    </div>
+
+    <div id = "thirdRow">
+        <button id = 'z' class = 'alphabet'>Z</button>
+        <button id = 'x' class = 'alphabet'>X</button>
+        <button id = 'c' class = 'alphabet'>C</button>
+        <button id = 'v' class = 'alphabet'>V</button>
+        <button id = 'b' class = 'alphabet'>B</button>
+        <button id = 'n' class = 'alphabet'>N</button>
+        <button id = 'm' class = 'alphabet'>M</button> 
+    </div>
+</div>
+
+
+<div id = "endScreenModal" class = "modal">
+    <div class = "content">
+        <span class="close">&times;</span>
+        <button id = "buttonPlayAgain" class = "modalButton" onclick="location.reload()">Play Again?</button>
+        <button id = "buttonEnd" class = "modalButton">End</button>
+    </div>
+</div>
+
+    <script src='hangman.js'>
+
+    </script>
+</body>
+
