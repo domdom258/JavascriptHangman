@@ -1,4 +1,4 @@
-var hangManList = ['thrall', 'jaina', 'garrosh', 'medivh', 'khadgar']; //  list of words
+var hangManList = ['awkward', 'bagpipes', 'croquet', 'jazzed', 'dwarves']; //  list of words
 var guess;
 var blankWord;
 var numOfWrongGuesses = 0;
@@ -7,7 +7,7 @@ var wordGenerated = hangManList[Math.floor((Math.random() * hangManList.length))
 var wordGeneratedArray = wordGenerated.split('');
 var canvas = document.getElementById("hangManCanvas");
 var context = canvas.getContext("2d");
-var gameWin = true;
+var gameWin;
 
 //blankWord = wordGenerated.replace(/[a-z]/g ,'_ ');
 
@@ -15,8 +15,7 @@ for (var i = 0; i < wordGeneratedArray.length; i++) {
     wordGeneratedArray[i] = "_ ";
 
 }
-function generateWord() { //generate the word from array
-
+function generateWord() {                                                   //generate the word from array
 
     for (var i = 0; i < wordGeneratedArray.length; i++) {
         var word = document.getElementById('hangManWord');
@@ -25,17 +24,17 @@ function generateWord() { //generate the word from array
     }
 }
 
-function solveWord() {
+function solveWord() {                                                      //starts the game by allowing user to solve the word
     guessedLetter = guess;
-    wordToSolve = wordGenerated;
-    var wrongLetterField = document.getElementById('wrongLetters');
+    wordToSolve = wordGenerated;                                            //sets the word generated to word to solved
+    var wrongLetterField = document.getElementById('wrongLetters');         
     var wrongLetter;
 
-    for (var i = 0; i < wordGeneratedArray.length; i++) {
+    for (var i = 0; i < wordGeneratedArray.length; i++) {                   //check if the word has a _ then checks if the game is won
         if (!wordGeneratedArray.includes('_ ')) {
             checkIfWin();
         } else {
-            if (guessedLetter === wordToSolve.charAt(i)) {
+            if (guessedLetter === wordToSolve.charAt(i)) {                  //if the user inputs a correct letter
                 wordGeneratedArray[i] = guessedLetter + ' ';
                 var hit = true;
             }
@@ -48,9 +47,7 @@ function solveWord() {
 
     if (!hit) {
         numOfWrongGuesses++;
-        /*wrongLetter = document.createTextNode(guessedLetter);
-        wrongLetterField.appendChild(wrongLetter);*/
-        //call draw function and draws whatever piece is depending on gueses
+                                                                            //call draw function and draws whatever piece is depending on gueses
         drawHangMan(numOfWrongGuesses);
 
         if (numOfWrongGuesses === 6) {
@@ -59,10 +56,13 @@ function solveWord() {
     }
 }
 
-function checkIfWin() {
+function checkIfWin() {                                                     //checks if the game is won
     for (var i = 0; i < wordGeneratedArray.length; i++) {
         if (wordGeneratedArray[i] === '_ ') {
             gameWin = false;
+        }
+        else{
+            gameWin = true;
         }
     }
     if (gameWin); {
@@ -71,7 +71,7 @@ function checkIfWin() {
 }
 
 
-function hangManFrame() {
+function hangManFrame() {                                                   //create the HTML canvas 
     context.strokeStyle = " #fffef9";
     context.lineWidth = 3;
     context.beginPath();
@@ -84,11 +84,11 @@ function hangManFrame() {
     context.stroke();
 }
 
-function drawHangMan(wrongGuesses) {
+function drawHangMan(wrongGuesses) {                                        //creates the different parts of the hangman
     context.lineWidth = 2;
     context.beginPath();
     context.strokeStyle = " #fffef9";
-    if (wrongGuesses === 1) {
+    if (wrongGuesses === 1) {                                              
         context.arc(250, 175, 25, 0, 2 * Math.PI, false);
     }
     else if (wrongGuesses === 2) {
@@ -114,11 +114,11 @@ function drawHangMan(wrongGuesses) {
     context.stroke();
 }
 
-function end() {
+function end() {                                                            //ends the game and displays the modal allows user to restart or end
     var modal = document.getElementById('endScreenModal');
     var span = document.getElementsByClassName("close")[0];
 
-    if (numOfWrongGuesses === 6 || gameWin) {
+    if (numOfWrongGuesses === 6 || gameWin === true) {
         modal.style.display = "block";
         span.onclick = function () {
             modal.style.display = "none";
@@ -126,7 +126,7 @@ function end() {
     }
 }
 
-function eventListener() {
+function eventListener() {                                                 //adds a click event listener to all buttons for the letters
 
     var buttons = document.getElementsByTagName('button');
     for (var i = 0; i < buttons.length; i++) {
